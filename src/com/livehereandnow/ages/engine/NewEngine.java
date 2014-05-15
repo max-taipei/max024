@@ -219,6 +219,9 @@ public class NewEngine {
             case "c":
             case "":
                 return doChangeTurn();
+            case "cc":
+
+                return doChangeTurnV2();
 
             default:
                 System.out.println("Unknown keyword, " + keyword);
@@ -333,17 +336,24 @@ public class NewEngine {
         int points;
         field.getCurrentPlayer().get文化().setPoints(field.getCurrentPlayer().get文化().getPoints() + field.getCurrentPlayer().get文化生產_當回合().getPoints());
         field.getCurrentPlayer().get科技().setPoints(field.getCurrentPlayer().get科技().getPoints() + field.getCurrentPlayer().get科技生產_當回合().getPoints());
-        for (int k = 0; k < 1; k++) {
-//            field.getCurrentPlayer().get農場區().get(k).produce();
-//            field.getCurrentPlayer().get礦山區().get(k).produce();
-            /*
-             points = field.getCurrentPlayer().get農場區().get(k).getTokenBlue() + field.getCurrentPlayer().get農場區().get(k).getTokenYellow();
-             field.getCurrentPlayer().get農場區().get(k).setTokenBlue(points);
-             points = field.getCurrentPlayer().get礦山區().get(k).getTokenBlue() + field.getCurrentPlayer().get礦山區().get(k).getTokenYellow();
-             field.getCurrentPlayer().get礦山區().get(k).setTokenBlue(points);
-             */
-        }
+//        for (int k = 0; k < field.getCurrentPlayer().get農場區().size(); k++) {
+////            field.getCurrentPlayer().get農場區().get(k).produce();
+////            field.getCurrentPlayer().get礦山區().get(k).produce();
+//
+//            points = field.getCurrentPlayer().get農場區().get(k).getTokenBlue() + field.getCurrentPlayer().get農場區().get(k).getTokenYellow();
+//            field.getCurrentPlayer().get農場區().get(k).setTokenBlue(points);
+//        }
+//        for (int k = 0; k < field.getCurrentPlayer().get農場區().size(); k++) {
+//            points = field.getCurrentPlayer().get礦山區().get(k).getTokenBlue() + field.getCurrentPlayer().get礦山區().get(k).getTokenYellow();
+//            field.getCurrentPlayer().get礦山區().get(k).setTokenBlue(points);
+//        }
+//    ca.add(new AgesCard(2554, 1007, "農業", 0, "內政", "農場", "", "石頭:2", "食物:1", "null", "棕色", 1, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0));
+    
+        points = field.getCurrentPlayer().get農場區().get(0).getTokenBlue() + field.getCurrentPlayer().get農場區().get(0).getTokenYellow();
+        field.getCurrentPlayer().get農場區().get(0).setTokenBlue(points);
 
+//            points = field.getCurrentPlayer().get礦山區().get(k).getTokenBlue() + field.getCurrentPlayer().get礦山區().get(k).getTokenYellow();
+//            field.getCurrentPlayer().get礦山區().get(k).setTokenBlue(points);
     }
 
     private boolean doPlayCard(int val) {
@@ -390,14 +400,14 @@ public class NewEngine {
         System.out.println("Assign initial 內政點數 and 回合");
         for (int k = 0; k < 13; k++) {
             field.moveOneCard(field.get時代A內政牌(), 0, field.getCardRow());
-            
-      field.get時代A內政牌().remove(0);
-        field.get時代A內政牌().remove(0);
-        field.get時代A內政牌().remove(0);
-        field.get時代A內政牌().remove(0);     
-        }
+
 //    
-                
+        }
+//        field.get時代A內政牌().remove(0);
+//        field.get時代A內政牌().remove(0);
+//        field.get時代A內政牌().remove(0);
+//        field.get時代A內政牌().remove(0);
+
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //        for (int k = 0; k < 2; k++) {
 //
@@ -449,6 +459,14 @@ public class NewEngine {
         return true;
     }
 
+    private boolean doChangeTurnV2() {
+        for (int k = 0; k < 38; k++) {
+            doChangeTurn();
+        }
+
+        return true;
+    }
+
     private void compute當回合文化() {
         System.out.println("compute當回合文化 ***TODO***");
         field.getCurrentPlayer().get文化生產_當回合().setPoints(2);
@@ -473,35 +491,54 @@ public class NewEngine {
         field.getCurrentPlayer().get軍事點數().setPoints(6);
 
         System.out.println("在這裡作補牌");
-        
+
 //        移除前三張，實際作法是移除前三張增加三張三張空卡
         field.getCardRow().remove(0);
         field.getCardRow().remove(0);
         field.getCardRow().remove(0);
-//        AgesCard temp = new AgesCard();
-//        temp.setId(1000);
-//        temp.setName("");
-//        temp.setAge(4);
-//        temp.setTag("");
+        AgesCard temp = new AgesCard();
+        temp.setId(1000);
+        temp.setName("");
+        temp.setAge(4);
+        temp.setTag("");
 //        field.getCardRow().add(0, temp);//在卡牌列同樣的位子，補上一張空卡
 //        field.getCardRow().add(0, temp);//在卡牌列同樣的位子，補上一張空卡
-//        field.getCardRow().add(0, temp);//在卡牌列同樣的位子，補上一張空卡
+
 //      左推
-        for(int k=0;k<field.getCardRow().size();k++)
-        {
-            if(field.getCardRow().get(k).getId()==1000){
+        for (int k = 0; k < field.getCardRow().size(); k++) {
+            if (field.getCardRow().get(k).getId() == 1000) {
                 field.getCardRow().remove(k);
-                 k--;
-                 
+                k--;
+
             }
-        }   
-        for(int k=field.getCardRow().size();k<13;k++){
-//        field.getCardRow().add(k, temp);
-//            if(field)
-//            field.moveOneCard(field.get時代A內政牌(), 0, field.getCardRow());
-//    }
-//        
-//  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+        for (int k = field.getCardRow().size(); k < 13; k++) {
+
+            if (field.get時代A內政牌().size() != 0) {
+                field.moveOneCard(field.get時代A內政牌(), 0, field.getCardRow());
+                for (int x = 0; x < field.get時代A內政牌().size(); x++) {
+                    field.get時代A內政牌().remove(0);
+                }
+            } else if (field.get時代I內政牌().size() != 0) {
+                field.moveOneCard(field.get時代I內政牌(), 0, field.getCardRow());
+            } else if (field.get時代II內政牌().size() != 0) {
+                field.moveOneCard(field.get時代II內政牌(), 0, field.getCardRow());
+            } else if (field.get時代III內政牌().size() != 0) {
+                //如果還有牌
+
+                field.moveOneCard(field.get時代III內政牌(), 0, field.getCardRow());
+            } else if (field.get時代III內政牌().size() == 0) {
+                System.out.println("沒牌了");
+                field.getCardRow().add(k, temp);//在卡牌列同樣的位子，補上一張空卡
+                if (field.getCurrentPlayer() == field.getP1()) {
+                    System.out.println("遊戲要結束了");
+                } else {
+                    System.out.println("遊戲下回合要結束了");
+                }
+            }
+        }
+
     }
 
+//  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 }
